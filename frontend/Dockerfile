@@ -4,23 +4,28 @@ FROM node:18 AS builder
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json and install dependencies
+# Copy package.json and package-lock.json first
 COPY package.json package-lock.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the frontend code
+# Copy the entire frontend code
 COPY . .
 
-# Build the React app
+# Build the Vite app
 RUN npm run build
 
-# Use Nginx as the final stage to serve the built files
+# Verify that the build folder exists
+RUN ls -la /app/dist
+
+# Use Nginx to serve the frontend
 FROM nginx:stable-alpine
 
-# Copy the build output to Nginx's default web directory
-COPY --from=builder /app/build /usr/share/nginx/html
+# Copy the build output to Nginx's web directory
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 80 (default for Nginx)
+# Expose port 80
 EXPOSE 80
 
 # Start Nginx
