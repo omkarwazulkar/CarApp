@@ -29,12 +29,12 @@ jobs:
       - name: Build and Push Backend Image
         run: |
           docker build -t backend-app ./backend
-          docker tag backend-app:latest 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app:latest
-          docker push 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app:latest
+          docker tag backend-app:latest 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-backend:latest
+          docker push 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-backend:latest
 
       # Build and push the frontend Docker image
       - name: Build and Push Frontend Image
         run: |
           docker build -t frontend-app ./frontend
-          docker tag frontend-app:latest 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app:latest
-          docker push 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app:latest
+          docker tag frontend-app:latest 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-frontend:latest
+          docker push 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-frontend:latest
