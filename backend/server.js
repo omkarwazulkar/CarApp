@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.error('MongoDB Connection Error:', err));
 
-const Car = require('/Users/omkarwazulkar/Desktop/backend/models/Car'); // Import Car model
+const Car = require('./models/Car'); // Import Car model
 
 app.get('/cars', async (req, res) => {
   const cars = await Car.find(); // Fetch all cars
