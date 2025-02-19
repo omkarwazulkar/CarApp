@@ -16,18 +16,18 @@ jobs:
       # Login to AWS ECR
       - name: Login to Amazon ECR
         run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+          aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 084375590547.dkr.ecr.eu-north-1.amazonaws.com
 
       # Build and push the backend Docker image
       - name: Build and Push Backend Image
         run: |
           docker build -t backend-app ./backend
-          docker tag backend-app:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}-backend:latest
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}-backend:latest
+          docker tag backend-app:latest 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-backend:latest
+          docker push 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-backend:latest
 
       # Build and push the frontend Docker image
       - name: Build and Push Frontend Image
         run: |
           docker build -t frontend-app ./frontend
-          docker tag frontend-app:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}-frontend:latest
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}-frontend:latest
+          docker tag frontend-app:latest 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-frontend:latest
+          docker push 084375590547.dkr.ecr.eu-north-1.amazonaws.com/mern-app-frontend:latest
